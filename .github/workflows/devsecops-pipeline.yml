@@ -27,3 +27,15 @@ jobs:
         npm install -g snyk
         snyk auth $SNYK_TOKEN
         snyk test --docker dvwa-app
+    - name: Run StackHawk Scan
+      env:
+        HAWK_API_KEY: ${{ secrets.HAWK_API_KEY }}
+      run: |
+       	curl -sL https://github.com/stackhawk/hawkscan-cli/releases/latest/download/hawkscan-linux-amd64.tar.gz | tar xz
+       	./hawkscan
+    - name: Deploy DVWA Container
+      run: |
+        docker stop dvwa || true
+        docker rm dvwa || true
+        docker run -d -p 8080:80 --name dvwa dvwa-app
+        echo "App deployed at http://localhost:8080"

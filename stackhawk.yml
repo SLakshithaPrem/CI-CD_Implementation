@@ -1,0 +1,15 @@
+app:
+  name: dvwa-app
+  env: Development
+  host: http://localhost:8080
+  autoPolicy: true
+
+  authentication:
+    loggedInIndicator: "Logout"
+    login:
+      type: form
+      url: http://localhost:8080/login.php
+      form:
+        user: admin
+        pass: password
+      submitField: Login
