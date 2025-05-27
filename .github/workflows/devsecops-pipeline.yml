@@ -31,8 +31,7 @@ jobs:
       env:
         HAWK_API_KEY: ${{ secrets.HAWK_API_KEY }}
       run: |
-       	curl -sL https://github.com/stackhawk/hawkscan-cli/releases/latest/download/hawkscan-linux-amd64.tar.gz | tar xz
-       	./hawkscan
+       	curl -sL https://github.com/stackhawk/hawkscan-cli/releases/latest/download/hawkscan-linux-amd64.tar.gz | tar xz./hawkscan
     - name: Deploy DVWA Container
       run: |
         docker stop dvwa || true
